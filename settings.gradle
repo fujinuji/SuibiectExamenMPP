@@ -1,0 +1,7 @@
+rootProject.name = 'SuibiectExamenMPP'
+include 'Model'
+include 'Repository'
+include 'Services'
+include 'Server'
+include 'Client'
+
