@@ -4,4 +4,6 @@ include 'Repository'
 include 'Services'
 include 'Server'
 include 'Client'
+include 'RestServer'
+include 'Rest'
 

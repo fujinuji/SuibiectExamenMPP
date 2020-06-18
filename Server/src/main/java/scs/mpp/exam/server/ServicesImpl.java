@@ -1,5 +1,6 @@
 package scs.mpp.exam.server;
 
+import scs.mpp.exam.entites.Game;
 import scs.mpp.exam.entites.Player;
 import scs.mpp.exam.entites.Round;
 import scs.mpp.exam.repository.GameRepository;
@@ -86,12 +87,12 @@ public class ServicesImpl implements Services {
                 }
 
                 if (answer.getAnswer1().startsWith(currentLetter) && country.contains(answer.getAnswer1()) &&
-                        answers.stream().map(x -> x.getAnswer1().equals(answer.getAnswer1())).count() > 1) {
+                        answers.stream().filter(x -> x.getAnswer1().equals(answer.getAnswer1())).count() > 1) {
                     points += 3;
                 }
 
                 if (answer.getAnswer1().startsWith(currentLetter) && country.contains(answer.getAnswer1()) &&
-                        answers.stream().map(x -> x.getAnswer1().equals(answer.getAnswer1())).count() == 1) {
+                        answers.stream().filter(x -> x.getAnswer1().equals(answer.getAnswer1())).count() == 1) {
                     points += 10;
                 }
 
@@ -100,12 +101,12 @@ public class ServicesImpl implements Services {
                 }
 
                 if (answer.getAnswer2().startsWith(currentLetter) && city.contains(answer.getAnswer2()) &&
-                        answers.stream().map(x -> x.getAnswer2().equals(answer.getAnswer2())).count() > 1) {
+                        answers.stream().filter(x -> x.getAnswer2().equals(answer.getAnswer2())).count() > 1) {
                     points += 3;
                 }
 
                 if (answer.getAnswer2().startsWith(currentLetter) && city.contains(answer.getAnswer2()) &&
-                        answers.stream().map(x -> x.getAnswer2().equals(answer.getAnswer2())).count() == 1) {
+                        answers.stream().filter(x -> x.getAnswer2().equals(answer.getAnswer2())).count() == 1) {
                     points += 10;
                 }
 
@@ -114,12 +115,12 @@ public class ServicesImpl implements Services {
                 }
 
                 if (answer.getAnswer3().startsWith(currentLetter) && sea.contains(answer.getAnswer3()) &&
-                        answers.stream().map(x -> x.getAnswer3().equals(answer.getAnswer3())).count() > 1) {
+                        answers.stream().filter(x -> x.getAnswer3().equals(answer.getAnswer3())).count() > 1) {
                     points += 3;
                 }
 
                 if (answer.getAnswer3().startsWith(currentLetter) && sea.contains(answer.getAnswer3()) &&
-                        answers.stream().map(x -> x.getAnswer3().equals(answer.getAnswer3())).count() == 1) {
+                        answers.stream().filter(x -> x.getAnswer3().equals(answer.getAnswer3())).count() == 1) {
                     points += 10;
                 }
 
@@ -140,6 +141,16 @@ public class ServicesImpl implements Services {
                     result.add(data.getKey());
                     result.add(data.getValue().toString());
                 }
+
+                Game game = new Game();
+                game.setId(gameId);
+                game.setFirstPlayer(sortedMap.get(0).getKey());
+                game.setFirstPlayerPoints(sortedMap.get(0).getValue());
+                game.setSecondPlayer(sortedMap.get(1).getKey());
+                game.setSecondPlayerPoints(sortedMap.get(1).getValue());
+                game.setThirdPlayer(sortedMap.get(2).getKey());
+                game.setThirdPlayerPoints(sortedMap.get(2).getValue());
+                gameRepository.saveGame(game);
 
                 loggedUsers.forEach((k, v) -> {
                     try {

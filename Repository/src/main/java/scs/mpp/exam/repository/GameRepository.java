@@ -6,6 +6,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Component;
 import scs.mpp.exam.entites.Game;
 
 import java.util.List;
@@ -40,7 +41,7 @@ public class GameRepository {
         session.close();
     }
 
-    public Game getById(Integer id) throws Exception {
+    public Game getById(String id) throws Exception {
         String hql = "FROM Game E WHERE E.id = :id";
         Query query = session.createQuery(hql);
         query.setParameter("id",id);

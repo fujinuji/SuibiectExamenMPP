@@ -1,5 +1,7 @@
 package scs.mpp.exam.entites;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,7 +10,8 @@ import java.io.Serializable;
 @Entity
 public class Game implements Serializable {
     @Id
-    private Integer id;
+    @Column(columnDefinition="VARCHAR(64)")
+    private String id;
     @Column
     private String firstPlayer;
     @Column
@@ -16,13 +19,13 @@ public class Game implements Serializable {
     @Column
     private String thirdPlayer;
     @Column
-    private String firstPlayerPoints;
+    private Integer firstPlayerPoints;
     @Column
-    private String secondPlayerPoints;
+    private Integer secondPlayerPoints;
     @Column
-    private String thirdPlayerPoints;
+    private Integer thirdPlayerPoints;
 
-    public Game(Integer id, String firstPlayer, String secondPlayer, String thirdPlayer, String firstPlayerPoints, String secondPlayerPoints, String thirdPlayerPoints) {
+    public Game(String id, String firstPlayer, String secondPlayer, String thirdPlayer, Integer firstPlayerPoints, Integer secondPlayerPoints, Integer thirdPlayerPoints) {
         this.id = id;
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
@@ -34,11 +37,11 @@ public class Game implements Serializable {
 
     public Game() {}
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -66,27 +69,27 @@ public class Game implements Serializable {
         this.thirdPlayer = thirdPlayer;
     }
 
-    public String getFirstPlayerPoints() {
+    public Integer getFirstPlayerPoints() {
         return firstPlayerPoints;
     }
 
-    public void setFirstPlayerPoints(String firstPlayerPoints) {
+    public void setFirstPlayerPoints(Integer firstPlayerPoints) {
         this.firstPlayerPoints = firstPlayerPoints;
     }
 
-    public String getSecondPlayerPoints() {
+    public Integer getSecondPlayerPoints() {
         return secondPlayerPoints;
     }
 
-    public void setSecondPlayerPoints(String secondPlayerPoints) {
+    public void setSecondPlayerPoints(Integer secondPlayerPoints) {
         this.secondPlayerPoints = secondPlayerPoints;
     }
 
-    public String getThirdPlayerPoints() {
+    public Integer getThirdPlayerPoints() {
         return thirdPlayerPoints;
     }
 
-    public void setThirdPlayerPoints(String thirdPlayerPoints) {
+    public void setThirdPlayerPoints(Integer thirdPlayerPoints) {
         this.thirdPlayerPoints = thirdPlayerPoints;
     }
 }

@@ -40,7 +40,7 @@ public class RoundRepository  {
         session.close();
     }
 
-    public List<Round> getByPlayerAndGame(String player, Integer gameId) throws Exception {
+    public List<Round> getByPlayerAndGame(String player, String gameId) throws Exception {
         String hql = "FROM Round E WHERE E.gameId = :gagemId AND E.playerName=:player";
         Query query = session.createQuery(hql);
         query.setParameter("gagemId",gameId);
@@ -51,6 +51,6 @@ public class RoundRepository  {
             throw new Exception("Round not found");
         }
 
-        return (List<Round>) result.get(0);
+        return (List<Round>) result;
     }
 }
